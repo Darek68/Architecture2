@@ -22,6 +22,7 @@ import ru.netology.nmedia.repository.PostRepository
 import ru.netology.nmedia.util.SingleLiveEvent
 import java.util.*
 import javax.inject.Inject
+import kotlin.random.Random.*
 import kotlin.random.Random.Default.nextLong
 
 
@@ -57,8 +58,8 @@ class PostViewModel @Inject constructor(
             }.map {
                 it.insertSeparators { previous, _ ->
                     if (previous?.id?.rem(5) == 0L) {
-                        Ad(Random.nextLong(),"figma.jpg")
-                       // Ad(777666L, "figma.jpg")
+                       // Ad(Random.nextLong(),"figma.jpg")
+                        Ad(777666L, "sbercard.jpg")
                     } else {
                         null
                     }
