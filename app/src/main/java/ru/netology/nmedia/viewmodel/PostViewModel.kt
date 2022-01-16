@@ -22,6 +22,7 @@ import ru.netology.nmedia.repository.PostRepository
 import ru.netology.nmedia.util.SingleLiveEvent
 import java.util.*
 import javax.inject.Inject
+import kotlin.random.Random.Default.nextLong
 
 
 private val empty = Post(
@@ -46,21 +47,21 @@ class PostViewModel @Inject constructor(
     private val cached = repository
         .data
         .cachedIn(viewModelScope)
-
+  
     val data: Flow<PagingData<FeedItem>> = auth.authStateFlow
         .flatMapLatest { (myId, _) ->
             cached.map { pagingData ->
                 pagingData.map { post ->
                     post.copy(ownedByMe = post.authorId == myId)
                 }
-            }.map{
+            }.map {
                 it.insertSeparators { previous, _ ->
-                    if(previous?.id.rem(5) == 0L){
-                        // Ad(Random.nexLong(),"figma.jpg")
-                        Ad(777666L,"figma.jpg")
+                    if (previous?.id?.rem(5) == 0L) {
+                        Ad(Random.nextLong(),"figma.jpg")
+                       // Ad(777666L, "figma.jpg")
+                    } else {
+                        null
                     }
-                } else {
-                    null
                 }
             }
         }
