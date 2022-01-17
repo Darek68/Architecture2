@@ -59,7 +59,7 @@ class PostViewModel @Inject constructor(
                 it.insertSeparators { previous, _ ->
                     if (previous?.id?.rem(5) == 0L) {
                        // Ad(Random.nextLong(),"figma.jpg")
-                        Ad(777666L, "sbercard.jpg")
+                        Ad(777666L, "figma.jpg")
                     } else {
                         null
                     }
